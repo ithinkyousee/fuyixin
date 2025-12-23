@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 付益欣的专属浪漫世界 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">💝</span>
+                <span class="brand-text">付益欣的专属世界</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" onclick="switchSection('home')">🏠 首页</a>
+                <a href="#gallery" class="nav-link" onclick="switchSection('gallery')">🖼️ 相册</a>
+                <a href="#love" class="nav-link" onclick="switchSection('love')">💕 爱意</a>
+                <a href="#games" class="nav-link" onclick="switchSection('games')">🎮 游戏</a>
+                <a href="#surprise" class="nav-link" onclick="switchSection('surprise')">🎁 惊喜</a>
+            </div>
+            <div class="nav-controls">
+                <button class="control-btn" onclick="toggleMusic()" id="music-btn">
+                    <i class="fas fa-music"></i>
+                </button>
+                <button class="control-btn" onclick="toggleSound()" id="sound-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="control-btn" onclick="toggleTheme()">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <button class="control-btn admin-help-btn" onclick="showAdminHelp()" id="admin-help-btn" style="display: none;">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+                <button class="control-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 飘落元素容器 -->
+    <div id="falling-elements"></div>
+    
+    <!-- 背景音乐 -->
+    <audio id="bgm" loop preload="auto">
+        <source src="%E6%96%B9%E5%A4%A7%E5%90%8C%20-%20%E7%88%B1%E7%88%B1%E7%88%B1.mp3" type="audio/mpeg">
+        <source src="方大同 - 爱爱爱.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 点击音效 -->
+    <audio id="click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <!-- 首页 -->
+        <section id="home" class="section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-part">欢迎来到</span>
+                        <span class="title-part highlight">付益欣</span>
+                        <span class="title-part">的专属世界</span>
+                    </h1>
+                    <p class="hero-subtitle">这里充满了爱与浪漫，只为最特别的你而准备 💖</p>
+                    
+                    <div class="hero-features">
+                        <div class="feature-card" onclick="switchSection('gallery')">
+                            <div class="feature-icon">🖼️</div>
+                            <h3>精美相册</h3>
+                            <p>查看专属照片回忆</p>
+                        </div>
+                        <div class="feature-card" onclick="switchSection('love')">
+                            <div class="feature-icon">💝</div>
+                            <h3>浪漫情书</h3>
+                            <p>阅读爱的告白</p>
+                        </div>
+                        <div class="feature-card" onclick="switchSection('games')">
+                            <div class="feature-icon">🎮</div>
+                            <h3>互动游戏</h3>
+                            <p>一起玩小游戏</p>
+                        </div>
+                        <div class="feature-card" onclick="switchSection('surprise')">
+                            <div class="feature-icon">🎁</div>
+                            <h3>神秘惊喜</h3>
+                            <p>发现隐藏彩蛋</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-animation">
+                    <div class="floating-heart">💖</div>
+                    <div class="floating-star">✨</div>
+                    <div class="floating-flower">🌸</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相册页面 -->
+        <section id="gallery" class="section">
+            <div class="section-header">
+                <h2>📸 我们的美好回忆</h2>
+                <p>每一张照片都记录着我们的故事</p>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="gallery-main">
+                    <div class="gallery-display" id="gallery-display">
+                        <!-- 主照片显示区域 -->
+                    </div>
+                    <div class="gallery-controls">
+                        <button class="gallery-btn prev-btn" onclick="prevPhoto()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="photo-info">
+                            <span class="photo-counter" id="photo-counter">1/12</span>
+                            <span class="photo-date" id="photo-date">美好时刻</span>
+                        </div>
+                        <button class="gallery-btn next-btn" onclick="nextPhoto()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="gallery-thumbnails" id="gallery-thumbnails">
+                    <!-- 缩略图区域 -->
+                </div>
+                
+                <div class="gallery-actions">
+                    <button class="action-btn" onclick="enlargeCurrentPhoto()">
+                        <i class="fas fa-expand"></i> 放大查看
+                    </button>
+                    <button class="action-btn" onclick="downloadPhoto()">
+                        <i class="fas fa-download"></i> 下载照片
+                    </button>
+                    <button class="action-btn" onclick="sharePhoto()">
+                        <i class="fas fa-share"></i> 分享美好
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 爱意页面 -->
+        <section id="love" class="section">
+            <div class="section-header">
+                <h2>💌 写给最爱的你</h2>
+                <p>这些文字只为你一个人而写</p>
+            </div>
+            
+            <div class="love-container">
+                <div class="love-letters">
+                    <div class="letter-card active" data-letter="1">
+                        <h3>💖 第一封情书</h3>
+                        <p>亲爱的付益欣，从遇见你的那一刻起，我的世界就变得不一样了...</p>
+                    </div>
+                    <div class="letter-card" data-letter="2">
+                        <h3>💕 我们的故事</h3>
+                        <p>还记得我们第一次见面的时候吗？那时候的你...</p>
+                    </div>
+                    <div class="letter-card" data-letter="3">
+                        <h3>🌟 未来展望</h3>
+                        <p>我期待着和你一起走过的每一个明天...</p>
+                    </div>
+                </div>
+                
+                <div class="love-display" id="love-display">
+                    <div class="love-content">
+                        <h3 id="love-title">💖 第一封情书</h3>
+                        <div class="love-text" id="love-text">
+                            <p>亲爱的付益欣，</p>
+                            <p>从遇见你的那一刻起，我的世界就变得不一样了。你的笑容像阳光一样温暖，你的眼神像星星一样明亮。</p>
+                            <p>每一天都想和你在一起，分享生活中的点点滴滴。你是我生命中最美的意外，也是我最珍贵的礼物。</p>
+                            <p>爱你，不仅仅是因为你是谁，更是因为和你在一起时，我变成了更好的自己。</p>
+                            <p>永远爱你的，<br>你的专属程序员 💝</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="love-interactive">
+                    <button class="love-btn" onclick="showRandomLoveMessage()">
+                        <i class="fas fa-heart"></i> 随机情话
+                    </button>
+                    <button class="love-btn" onclick="createLoveAnimation()">
+                        <i class="fas fa-magic"></i> 爱心特效
+                    </button>
+                    <button class="love-btn" onclick="recordLoveVoice()">
+                        <i class="fas fa-microphone"></i> 录音告白
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 游戏页面 -->
+        <section id="games" class="section">
+            <div class="section-header">
+                <h2>🎮 专属小游戏</h2>
+                <p>一起来玩些有趣的游戏吧！</p>
+            </div>
+            
+            <div class="games-container">
+                <div class="game-selection">
+                    <div class="game-card" onclick="startMemoryGame()">
+                        <div class="game-icon">🧠</div>
+                        <h3>记忆翻牌</h3>
+                        <p>测试我们的默契程度</p>
+                    </div>
+                    <div class="game-card" onclick="startLoveQuiz()">
+                        <div class="game-icon">❓</div>
+                        <h3>爱情测试</h3>
+                        <p>了解彼此更多</p>
+                    </div>
+                    <div class="game-card" onclick="startPuzzleGame()">
+                        <div class="game-icon">🧩</div>
+                        <h3>拼图游戏</h3>
+                        <p>拼出我们的回忆</p>
+                    </div>
+                </div>
+                
+                <div class="game-area" id="game-area">
+                    <div class="game-welcome">
+                        <h3>选择一个小游戏开始吧！</h3>
+                        <p>每个游戏都有特别的奖励哦～</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 惊喜页面 -->
+        <section id="surprise" class="section">
+            <div class="section-header">
+                <h2>🎁 神秘惊喜区</h2>
+                <p>这里藏着给你的特别礼物，完成相应条件即可解锁</p>
+            </div>
+            
+            <div class="surprise-container">
+                <div class="surprise-box unlocked" onclick="openSurprise(1)" id="surprise-1">
+                    <div class="surprise-unlock">🎁</div>
+                    <h3>惊喜一</h3>
+                    <p>立即解锁</p>
+                    <div class="surprise-requirements">💝 温暖的拥抱礼物</div>
+                </div>
+                <div class="surprise-box locked" onclick="checkSurpriseUnlock(2)" id="surprise-2">
+                    <div class="surprise-lock">🔒</div>
+                    <h3>惊喜二</h3>
+                    <p>需要完成小任务</p>
+                    <div class="surprise-progress">
+                        <div class="surprise-progress-bar" id="surprise-2-progress" style="width: 0%"></div>
+                    </div>
+                    <div class="surprise-requirements">🎮 完成任意一个游戏</div>
+                </div>
+                <div class="surprise-box locked" onclick="checkSurpriseUnlock(3)" id="surprise-3">
+                    <div class="surprise-lock">🔒</div>
+                    <h3>惊喜三</h3>
+                    <p>终极神秘礼物</p>
+                    <div class="surprise-progress">
+                        <div class="surprise-progress-bar" id="surprise-3-progress" style="width: 0%"></div>
+                    </div>
+                    <div class="surprise-requirements">🌟 发现3个隐藏彩蛋</div>
+                </div>
+            </div>
+            
+            <div class="easter-egg">
+                <p>💡 <strong>解锁提示：</strong></p>
+                <p>• 惊喜一：点击即可解锁，获得温暖的拥抱礼物</p>
+                <p>• 惊喜二：完成任意一个游戏后解锁，获得特别奖励</p>
+                <p>• 惊喜三：在页面中发现3个隐藏彩蛋后解锁终极神秘礼物</p>
+                <p>✨ 试试在页面不同地方多点几下，可能会有意外发现哦！</p>
+            </div>
+        </section>
+
+        <!-- 管理员帮助页面 -->
+        <section id="admin-help" class="section">
+            <div class="section-header">
+                <h2>🛠️ 管理员使用帮助</h2>
+                <p>网站功能说明和管理指南</p>
+            </div>
+            
+            <div class="admin-help-container">
+                <div class="admin-panel">
+                    <div class="admin-card">
+                        <h3>📋 网站功能概览</h3>
+                        <div class="admin-content">
+                            <h4>主要功能模块：</h4>
+                            <ul>
+                                <li><strong>首页</strong> - 网站欢迎页面和功能导航</li>
+                                <li><strong>相册</strong> - 展示专属照片和回忆</li>
+                                <li><strong>爱意</strong> - 浪漫情书和互动功能</li>
+                                <li><strong>游戏</strong> - 三个互动小游戏</li>
+                                <li><strong>惊喜</strong> - 神秘礼物和彩蛋</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3>🎮 游戏功能说明</h3>
+                        <div class="admin-content">
+                            <h4>可玩游戏：</h4>
+                            <ul>
+                                <li><strong>记忆翻牌游戏</strong> - 测试默契的卡片匹配游戏</li>
+                                <li><strong>爱情测试</strong> - 了解彼此的问题问答</li>
+                                <li><strong>拼图游戏</strong> - 拼出专属回忆的拼图</li>
+                            </ul>
+                            <p>每个游戏都有完整的计时、计分和反馈系统</p>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3>🎵 媒体功能</h3>
+                        <div class="admin-content">
+                            <h4>音频功能：</h4>
+                            <ul>
+                                <li>背景音乐自动播放</li>
+                                <li>点击音效反馈</li>
+                                <li>录音功能（需浏览器授权）</li>
+                                <li>音效开关控制</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3>✨ 特效功能</h3>
+                        <div class="admin-content">
+                            <h4>视觉特效：</h4>
+                            <ul>
+                                <li>飘落元素动画</li>
+                                <li>烟花特效</li>
+                                <li>爱心动画</li>
+                                <li>页面切换过渡</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3>🔧 技术特性</h3>
+                        <div class="admin-content">
+                            <h4>技术实现：</h4>
+                            <ul>
+                                <li>响应式设计，支持移动端</li>
+                                <li>本地存储（记住登录状态）</li>
+                                <li>Web API集成（录音、分享等）</li>
+                                <li>CSS动画和JavaScript交互</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3>💡 使用技巧</h3>
+                        <div class="admin-content">
+                            <h4>操作提示：</h4>
+                            <ul>
+                                <li>点击页面任意位置有涟漪效果</li>
+                                <li>使用键盘快捷键（Enter、Esc、H）</li>
+                                <li>浮动控制按钮提供快捷操作</li>
+                                <li>尝试探索页面寻找隐藏彩蛋</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="admin-actions">
+                    <button class="admin-action-btn" onclick="exportUserData()">
+                        <i class="fas fa-download"></i> 导出用户数据
+                    </button>
+                    <button class="admin-action-btn" onclick="resetAllGames()">
+                        <i class="fas fa-redo"></i> 重置游戏进度
+                    </button>
+                    <button class="admin-action-btn" onclick="showSystemInfo()">
+                        <i class="fas fa-info-circle"></i> 系统信息
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 浮动控制按钮 -->
+    <div class="floating-controls">
+        <button class="float-btn" onclick="createFireworks()" title="烟花特效">
+            <i class="fas fa-fire"></i>
+        </button>
+        <button class="float-btn" onclick="showLoveMessage()" title="显示爱意">
+            <i class="fas fa-heart"></i>
+        </button>
+        <button class="float-btn" onclick="toggleFallingElements()" title="切换飘落">
+            <i class="fas fa-snowflake"></i>
+        </button>
+        <button class="float-btn" onclick="scrollToTop()" title="回到顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <!-- 烟花画布 -->
+    <canvas id="fireworks"></canvas>
+    
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>加载中...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

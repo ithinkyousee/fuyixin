@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 专属浪漫网站</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 飘落元素容器 -->
+    <div id="falling-elements"></div>
+    
+    <!-- 背景音乐 -->
+    <audio id="bgm" loop preload="auto">
+        <source src="%E6%96%B9%E5%A4%A7%E5%90%8C%20-%20%E7%88%B1%E7%88%B1%E7%88%B1.mp3" type="audio/mpeg">
+        <source src="方大同 - 爱爱爱.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 点击音效 -->
+    <audio id="click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- 登录容器 -->
+    <div class="login-container">
+        <div class="login-box">
+            <!-- 装饰元素 -->
+            <div class="decoration heart-1">💖</div>
+            <div class="decoration heart-2">💕</div>
+            <div class="decoration star-1">✨</div>
+            <div class="decoration star-2">🌟</div>
+            
+            <!-- 标题 -->
+            <div class="login-header">
+                <h1 class="login-title">欢迎来到专属浪漫世界</h1>
+                <div class="heart-animation">💝</div>
+            </div>
+            
+            <!-- 登录表单 -->
+            <form class="login-form" id="login-form">
+                <div class="input-group">
+                    <div class="input-icon">👤</div>
+                    <input type="text" id="username" placeholder="请输入账号" required>
+                </div>
+                
+                <div class="input-group">
+                    <div class="input-icon">🔒</div>
+                    <input type="password" id="password" placeholder="请输入密码" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+                </div>
+                
+                <div class="login-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        记住我
+                    </label>
+                    <a href="#" class="forgot-password" onclick="showHint()">忘记密码？</a>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">进入浪漫世界</span>
+                    <div class="btn-heart">💖</div>
+                </button>
+            </form>
+            
+            <!-- 提示信息 -->
+            <div class="hint-box" id="hint-box">
+                <p>💡 提示：账号是付益欣，密码是woaini<br>管理员账号：admin，密码：woaini</p>
+            </div>
+            
+            <!-- 加载动画 -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>正在进入浪漫世界...</p>
+            </div>
+        </div>
+        
+        <!-- 底部装饰 -->
+        <div class="login-footer">
+            <p>只为最特别的你而准备 ❤️</p>
+        </div>
+    </div>
+    
+    <!-- 烟花画布 -->
+    <canvas id="fireworks"></canvas>
+    
+    <script src="login.js"></script>
+</body>
+</html>
